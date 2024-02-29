@@ -27,6 +27,7 @@ if [[ "$ID" == "fedora" ]]; then
   cmd sudo dnf install zsh -y
   cmd sudo dnf install stow -y
   cmd sudo dnf install fzf -y
+  cmd sudo dnf install make -y
 else
   echo "Distro not supported :/"
   echo "going to proceed anyway ..."

@@ -38,6 +38,8 @@ fi
 # =================================
 # General config
 # =================================
+ssh-keygen
+gh auth login
 chsh -s $(which zsh) # Set default shell to zsh
 git config --global init.defaultBranch main
 

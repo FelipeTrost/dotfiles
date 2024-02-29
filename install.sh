@@ -1,6 +1,6 @@
 #!/bin/bash
 
-git clone git@github.com:FelipeTrost/dotfiles.git ~/dotfiles/
+git clone https://github.com/FelipeTrost/dotfiles.git ~/dotfiles/
 
 cd ~/dotfiles
 

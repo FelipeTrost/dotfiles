@@ -1,6 +1,8 @@
 #!/bin/bash
 
-git clone https://github.com/FelipeTrost/dotfiles.git ~/dotfiles/
+if [ ! -e ~/dotfiles ]; then
+  git clone https://github.com/FelipeTrost/dotfiles.git ~/dotfiles/
+fi
 
 cd ~/dotfiles
 

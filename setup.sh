@@ -27,7 +27,9 @@ if [[ "$ID" == "fedora" ]]; then
   cmd sudo dnf install zsh -y
   cmd sudo dnf install stow -y
   cmd sudo dnf install fzf -y
-  cmd sudo dnf install make -y
+  cmd sudo dnf install make cmake gcc -y
+  cmd sudo dnf install -y nodejs npm
+  cmd sudo dnf install -y gh
 else
   echo "Distro not supported :/"
   echo "going to proceed anyway ..."
@@ -56,7 +58,6 @@ cd neovim
 cmd git fetch --all
 tag=$(git tag | fzf --header="-> NVIM version")
 cmd git checkout "tags/$tag"
-cmd git pull 
 cmd make CMAKE_BUILD_TYPE=RelWithDebInfo
 cmd sudo make install &> /dev/null 
 echo "✅ Installed neovim"
@@ -66,7 +67,7 @@ echo "✅ Installed neovim"
 # =================================
 echo "Installing tmux"
 cd ~/tools
-cmd clone https://github.com/tmux/tmux.git
+cmd git clone https://github.com/tmux/tmux.git
 cd tmux
 cmd git fetch --all
 tag=$(git tag | fzf --header="-> TMUX version")
@@ -83,4 +84,6 @@ echo "✅ Installed tmux"
 # =================================
 echo "Installing oh-my-zsh"
 cmd sh -c "$(curl -fsSL https://install.ohmyz.sh/)"
+cmd git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+cmd git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 echo "✅ Installed oh-my-zsh"

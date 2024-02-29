@@ -18,6 +18,9 @@ if [[ "$OSTYPE" != "linux-gnu"* ]]; then
   exit 1
 fi
 
+echo "Grant sudo permissions for the next commands"
+sudo echo "Thanks!"
+
 source /etc/os-release # now ge can get the distro in #ID
 
 if [[ "$ID" == "fedora" ]]; then

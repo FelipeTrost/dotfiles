@@ -21,15 +21,13 @@ fi
 source /etc/os-release # now ge can get the distro in #ID
 
 if [[ "$ID" == "fedora" ]]; then
+  echo ... running dnf update
   cmd sudo dnf update -y
-  cmd sudo dnf install git -y
-  cmd sudo dnf install alacritty -y
-  cmd sudo dnf install zsh -y
-  cmd sudo dnf install stow -y
-  cmd sudo dnf install fzf -y
-  cmd sudo dnf install make cmake gcc -y
-  cmd sudo dnf install -y nodejs npm
-  cmd sudo dnf install -y gh
+  echo ✅ dnf updated
+
+  echo ... installing git alacritty zsh stow fzf make cmake gcc nodejs npm gh
+  cmd sudo dnf install -y git alacritty zsh stow fzf make cmake gcc nodejs npm gh
+  echo ✅ packages installed
 else
   echo "Distro not supported :/"
   echo "going to proceed anyway ..."
@@ -53,7 +51,7 @@ mkdir ~/tools  2> /dev/null
 # =================================
 # Install neovim
 # =================================
-echo "Installing neovim"
+echo "... Installing neovim"
 cd ~/tools
 cmd git clone https://github.com/neovim/neovim.git
 cd neovim
@@ -67,7 +65,7 @@ echo "✅ Installed neovim"
 # =================================
 # Install Tmux
 # =================================
-echo "Installing tmux"
+echo "... Installing tmux"
 cd ~/tools
 cmd git clone https://github.com/tmux/tmux.git
 cd tmux

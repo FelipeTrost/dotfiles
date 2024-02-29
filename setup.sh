@@ -50,7 +50,7 @@ mkdir ~/tools  2> /dev/null
 # =================================
 echo "Installing neovim"
 cd ~/tools
-cmd git clone git@github.com:neovim/neovim.git 
+cmd git clone https://github.com/neovim/neovim.git
 cd neovim
 cmd git fetch --all
 tag=$(git tag | fzf --header="-> NVIM version")
@@ -65,7 +65,7 @@ echo "✅ Installed neovim"
 # =================================
 echo "Installing tmux"
 cd ~/tools
-cmd clone git@github.com:tmux/tmux.git 
+cmd clone https://github.com/tmux/tmux.git
 cd tmux
 cmd git fetch --all
 tag=$(git tag | fzf --header="-> TMUX version")

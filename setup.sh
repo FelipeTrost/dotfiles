@@ -23,9 +23,10 @@ source /etc/os-release # now ge can get the distro in #ID
 if [[ "$ID" == "fedora" ]]; then
   cmd sudo dnf update -y
   cmd sudo dnf install git -y
-  cmd sudo dnf install alacricity -y
+  cmd sudo dnf install alacritty -y
   cmd sudo dnf install zsh -y
   cmd sudo dnf install stow -y
+  cmd sudo dnf install fzf -y
 else
   echo "Distro not supported :/"
   echo "going to proceed anyway ..."

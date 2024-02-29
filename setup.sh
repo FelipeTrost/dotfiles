@@ -25,11 +25,11 @@ source /etc/os-release # now ge can get the distro in #ID
 
 if [[ "$ID" == "fedora" ]]; then
   echo ... running dnf update
-  cmd sudo dnf update -y
+  sudo dnf update -y -q
   echo ✅ dnf updated
 
   echo ... installing git alacritty zsh stow fzf make cmake gcc nodejs npm gh
-  cmd sudo dnf install -y git alacritty zsh stow fzf make cmake gcc nodejs npm gh
+  sudo dnf install -y -q git alacritty zsh stow fzf make cmake gcc nodejs npm gh
   echo ✅ packages installed
 else
   echo "Distro not supported :/"
@@ -39,14 +39,14 @@ fi
 # =================================
 # General config
 # =================================
-ssh-keygen
+if [ ! -f ~/.ssh/id_rsa ]; then
+  ssh-keygen
+fi
 gh auth login
-chsh -s $(which zsh) # Set default shell to zsh
 git config --global init.defaultBranch main
 
 echo "Using stow to symlink dotfiles"
 stow .
-
 
 # Install from source
 mkdir ~/tools  2> /dev/null
@@ -61,8 +61,8 @@ cd neovim
 cmd git fetch --all
 tag=$(git tag | fzf --header="-> NVIM version")
 cmd git checkout "tags/$tag"
-cmd make CMAKE_BUILD_TYPE=RelWithDebInfo
-cmd sudo make install &> /dev/null 
+make CMAKE_BUILD_TYPE=RelWithDebInfo
+sudo make install &> /dev/null 
 echo "✅ Installed neovim"
 
 # =================================

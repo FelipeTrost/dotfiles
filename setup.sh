@@ -39,7 +39,11 @@ fi
 if [ ! -f ~/.ssh/id_rsa ]; then
   ssh-keygen
 fi
-gh auth login
+
+if ! gh auth status >/dev/null 2>&1; then
+    gh auth login
+fi
+
 git config --global init.defaultBranch main
 
 echo "Using stow to symlink dotfiles"

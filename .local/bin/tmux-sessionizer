@@ -1,0 +1,38 @@
+#!/usr/bin/env zsh
+
+# Thanks prime
+
+projects=$(echo "/home/felipetrost/dotfiles\n/home/felipetrost/.config/nvim\n$(find ~/projects/work ~/projects/personal ~/projects/uniprojects ~/Documents/tuberlin -mindepth 1 -maxdepth 1 -type d )")
+
+if [[ $# -eq 1 ]]; then
+    selected=$(echo $projects | fzf --filter "$1" | head -n 1)
+else
+    selected=$(echo "$projects" | fzf)
+fi
+
+
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+selected_name=$(basename "$selected" | tr . _)
+tmux_running=$(pgrep tmux)
+
+
+# Ensure session
+if ! tmux has-session -t=$selected_name 2> /dev/null; then
+    echo 'starting new session here'
+    tmux new-session -ds $selected_name -c $selected -d
+fi
+
+# Open session
+if   [ -z $TMUX ];  then
+  echo 'opening 1'
+    tmux attach-session -t $selected_name
+else
+echo 'opening 2'
+    tmux switch-client -t $selected_name
+fi
+
+
+

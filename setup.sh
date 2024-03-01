@@ -18,9 +18,6 @@ if [[ "$OSTYPE" != "linux-gnu"* ]]; then
   exit 1
 fi
 
-echo "Grant sudo permissions for the next commands"
-sudo echo "Thanks!"
-
 source /etc/os-release # now ge can get the distro in #ID
 
 if [[ "$ID" == "fedora" ]]; then
@@ -85,8 +82,19 @@ echo "✅ Installed tmux"
 # =================================
 # Install OhMyZsh
 # =================================
-echo "Installing oh-my-zsh"
-cmd sh -c "$(curl -fsSL https://install.ohmyz.sh/)"
+echo "... Installing oh-my-zsh"
+cmd $(yes| sh -c "$(curl -fsSL https://install.ohmyz.sh/)")
 cmd git clone https://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 cmd git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 echo "✅ Installed oh-my-zsh"
+
+# =================================
+# Install Nerdfonts
+# =================================
+echo "... Installing JetBrainsMono Nerd Font"
+cmd wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/JetBrainsMono.tar.xz
+cmd tar -xf JetBrainsMono.tar.xz -C ~/.local/share/fonts/
+cmd rm /tmp/JetBrainsMono.tar.xz
+echo "✅ Installed JetBrainsMono Nerd Font"
+
+echo "Done! 🚀🚀"

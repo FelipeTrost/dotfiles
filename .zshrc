@@ -104,7 +104,7 @@ source $ZSH/oh-my-zsh.sh
 alias x="xdg-open"
 alias vim="nvim"
 
-alias c="/usr/local/bin/tmux-sessionizer" # c for code 
+alias c="~/.local/bin/tmux-sessionizer" # c for code 
 alias v="nvim ."
 
 alias fcd='cd $(find . -type d -not -path "*node_modules*" -not -path "*.git*" | fzf)'
@@ -116,6 +116,8 @@ alias gD='git branch -D $(git branch | sed "s/[\*|^\ ]//" | fzf)'
 alias :q='exit'
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+export PATH=/home/felipetrost/.local/bin:$PATH
 
 # bun completions
 [ -s "/home/felipetrost/.bun/_bun" ] && source "/home/felipetrost/.bun/_bun"

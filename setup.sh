@@ -25,8 +25,8 @@ if [[ "$ID" == "fedora" ]]; then
   sudo dnf update -y 
   echo "✅ dnf updated"
 
-  echo ... installing git alacritty zsh stow fzf make cmake gcc nodejs npm gh ripgrep
-  sudo dnf install -y git alacritty zsh stow fzf make cmake gcc nodejs npm gh ripgrep
+  echo ... installing git alacritty zsh stow fzf make cmake gcc nodejs npm gh ripgrep wl-clipboard
+  sudo dnf install -y git alacritty zsh stow fzf make cmake gcc nodejs npm gh ripgrep wl-clipboard
   echo ✅ packages installed
 else
   echo "Distro not supported :/"

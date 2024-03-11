@@ -45,6 +45,7 @@ if ! gh auth status >/dev/null 2>&1; then
 fi
 
 git config --global init.defaultBranch main
+git config push.default current # seems to make sense to me idk
 
 git config --global user.email "felipe.trost@gmail.com"
 git config --global user.name "Felipe Trost"

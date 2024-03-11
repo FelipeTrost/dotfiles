@@ -46,6 +46,9 @@ fi
 
 git config --global init.defaultBranch main
 
+git config --global user.email "felipe.trost@gmail.com"
+git config --global user.name "Felipe Trost"
+
 # =================================
 # General stuff
 # =================================

@@ -75,6 +75,11 @@ require("lazy").setup({
       "MunifTanjim/nui.nvim",
     }
   },
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {}
+  },
   require("config.autoformat"),
   require("config.debugger"),
 })

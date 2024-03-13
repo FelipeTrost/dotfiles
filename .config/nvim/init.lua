@@ -80,6 +80,12 @@ require("lazy").setup({
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {}
   },
+  -- sessions add require("persistence").load() to .nvim_config.lua in projects where you want it to be automatic
+  {
+    "folke/persistence.nvim",
+    event = "BufReadPre", -- this will only start session saving when an actual file was opened
+    opts = {}
+  },
   require("config.autoformat"),
   require("config.debugger"),
 })

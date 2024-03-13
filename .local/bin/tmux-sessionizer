@@ -21,16 +21,13 @@ tmux_running=$(pgrep tmux)
 
 # Ensure session
 if ! tmux has-session -t=$selected_name 2> /dev/null; then
-    echo 'starting new session here'
     tmux new-session -ds $selected_name -c $selected -d
 fi
 
 # Open session
 if   [ -z $TMUX ];  then
-  echo 'opening 1'
     tmux attach-session -t $selected_name
 else
-echo 'opening 2'
     tmux switch-client -t $selected_name
 fi
 

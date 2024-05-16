@@ -1,8 +1,8 @@
 -- print("Hola guapo ")
 
+require("set")
 require("globals")
 require("remap")
-require("set")
 
 --[[ Plugins ]]
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -41,7 +41,14 @@ require("lazy").setup({
   --{ "davidosomething/format-ts-errors.nvim" },
   {
     "kylechui/nvim-surround",
-    opts = {}
+    config = function()
+      require("nvim-surround").setup()
+      vim.api.nvim_set_hl(0, "NvimSurroundHighlight", {
+        bg = "#ffffff",
+        -- blend = 100,
+      })
+    end
+
   },
   { "christoomey/vim-tmux-navigator" },
   { "m4xshen/autoclose.nvim",        opts = {} },
@@ -86,6 +93,15 @@ require("lazy").setup({
     event = "BufReadPre", -- this will only start session saving when an actual file was opened
     opts = {}
   },
+  {
+    'kevinhwang91/nvim-ufo',
+    dependencies = 'kevinhwang91/promise-async',
+    opts = {
+      -- provider_selector = function(bufnr, filetype, buftype)
+      --   return { 'treesitter', 'indent' }
+      -- end
+    }
+  },
   require("config.autoformat"),
   require("config.debugger"),
 })
@@ -99,6 +115,8 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     vim.highlight.on_yank({ higroup = "IncSearch", timeout = 100 })
   end,
 })
+
+require("workstuff")
 
 require("hello-there")
 

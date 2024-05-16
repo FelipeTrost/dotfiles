@@ -8,6 +8,8 @@ local color_themes = {
   { "rose-pine/neovim",           "rose-pine",    { "dark", "light" } },
   { "Mofiqul/dracula.nvim",       "dracula",      { "dark" } },
   { "NLKNguyen/papercolor-theme", "PaperColor",   { "dark", "light" } },
+  { "jacoborus/tender.vim",       "tender",       { "dark" } },
+  { "bluz71/vim-moonfly-colors",  "moonfly",      { "dark" } },
 }
 
 local picker_results = {}

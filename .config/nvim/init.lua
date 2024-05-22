@@ -117,8 +117,8 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 require("workstuff")
-
 require("hello-there")
+require("autocmds")
 
 --[[ Local config for project ]]
 local cwd = vim.fn.getcwd()

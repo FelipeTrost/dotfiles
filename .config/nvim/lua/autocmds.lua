@@ -28,3 +28,11 @@ vim.keymap.set("n", "<leader>j", function() vim.cmd('set nohlsearch') end, { sil
 --     vim.cmd('set nohlsearch')
 --   end
 -- })
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+  group = id,
+  desc = "Highlight copied text",
+  callback = function()
+    vim.highlight.on_yank({ higroup = "IncSearch", timeout = 100 })
+  end,
+})

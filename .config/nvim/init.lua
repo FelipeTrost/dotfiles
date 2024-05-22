@@ -109,13 +109,6 @@ require("lazy").setup({
 require("config.lsp")
 require("config.cmp")
 
-vim.api.nvim_create_autocmd("TextYankPost", {
-  desc = "Highlight copied text",
-  callback = function()
-    vim.highlight.on_yank({ higroup = "IncSearch", timeout = 100 })
-  end,
-})
-
 require("workstuff")
 require("hello-there")
 require("autocmds")

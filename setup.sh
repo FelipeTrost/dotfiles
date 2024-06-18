@@ -102,6 +102,16 @@ mkdir -p ~/.tmux/plugins/tpm
 cmd git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # =================================
+# Fzf
+# =================================
+echo "... Installing fzf"
+cmd git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+cd ~/.fzf
+cmd git pull
+cmd $(yes n | ~/.fzf/install)
+echo "✅ Installed fzf"
+
+# =================================
 # Install OhMyZsh
 # =================================
 if [ -z "$ZSH" ]; then
@@ -132,16 +142,6 @@ if [ ! -d ~/.local/share/fonts/jetbrains ]; then
 else
   echo "❌ nerdfont already installed"
 fi
-
-# =================================
-# Fzf
-# =================================
-echo "... Installing fzf"
-cmd git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-cd ~/.fzf
-cmd git pull
-cmd $(yes n | ~/.fzf/install)
-echo "✅ Installed fzf"
 
 # =================================
 # Stow

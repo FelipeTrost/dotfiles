@@ -80,3 +80,5 @@ vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { silent = true })
 end
 
 vim.api.nvim_set_keymap('n', 'q', ':lua CloseQuickfix()<CR>', { noremap = true, silent = true }) ]]
+
+vim.keymap.set("n", "<leader>h", function() vim.cmd("set hlsearch!") end, { silent = true })

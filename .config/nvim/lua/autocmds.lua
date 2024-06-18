@@ -18,16 +18,14 @@ vim.api.nvim_create_autocmd('CmdlineChanged', {
     end
   end
 })
--- TODO: move this to remaps, when I decide if I like it
-vim.keymap.set("n", "<leader>j", function() vim.cmd('set nohlsearch') end, { silent = true })
 
--- vim.api.nvim_create_autocmd('CmdlineLeave', {
---   group = id,
---   pattern = '*',
---   callback = function()
---     vim.cmd('set nohlsearch')
---   end
--- })
+vim.api.nvim_create_autocmd('CmdlineLeave', {
+  group = id,
+  pattern = '*',
+  callback = function()
+    vim.cmd('set nohlsearch')
+  end
+})
 
 vim.api.nvim_create_autocmd("TextYankPost", {
   group = id,

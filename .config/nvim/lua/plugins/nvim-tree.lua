@@ -8,7 +8,6 @@ return {
       sort_by = "case_sensitive",
       view = {
         width = 50,
-        side = 'right'
       },
       renderer = {
         group_empty = true,

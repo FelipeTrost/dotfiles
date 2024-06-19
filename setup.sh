@@ -25,8 +25,8 @@ if [[ "$ID" == "fedora" ]]; then
   sudo dnf update -y 
   echo "✅ dnf updated"
 
-  echo ... installing git alacritty zsh stow make cmake gcc nodejs npm gh ripgrep wl-clipboard
-  sudo dnf install -y git alacritty zsh stow make cmake gcc nodejs npm gh ripgrep wl-clipboard
+  echo ... installing git alacritty zsh stow make cmake gcc nodejs npm gh ripgrep wl-clipboard neofetch
+  sudo dnf install -y git alacritty zsh stow make cmake gcc nodejs npm gh ripgrep wl-clipboard neofetch
   echo ✅ packages installed
 else
   echo "Distro not supported :/"
@@ -58,6 +58,17 @@ mkdir -p ~/tools
 mkdir -p ~/projects/work  
 mkdir -p ~/projects/personal  
 mkdir -p ~/projects/uniprojects
+
+
+# =================================
+# Fzf
+# =================================
+echo "... Installing fzf"
+cmd git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+cd ~/.fzf
+cmd git pull
+cmd $(yes n | ~/.fzf/install)
+echo "✅ Installed fzf"
 
 # =================================
 # Install neovim
@@ -132,16 +143,6 @@ if [ ! -d ~/.local/share/fonts/jetbrains ]; then
 else
   echo "❌ nerdfont already installed"
 fi
-
-# =================================
-# Fzf
-# =================================
-echo "... Installing fzf"
-cmd git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-cd ~/.fzf
-cmd git pull
-cmd $(yes n | ~/.fzf/install)
-echo "✅ Installed fzf"
 
 # =================================
 # Stow

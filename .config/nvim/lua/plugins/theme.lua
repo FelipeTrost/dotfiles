@@ -10,6 +10,10 @@ local color_themes = {
   { "NLKNguyen/papercolor-theme", "PaperColor",   { "dark", "light" } },
   { "jacoborus/tender.vim",       "tender",       { "dark" } },
   { "bluz71/vim-moonfly-colors",  "moonfly",      { "dark" } },
+  { "Mofiqul/vscode.nvim",        "vscode",       { "dark" } },
+  { "Scysta/pink-panic.nvim",     "pink-panic",   { "light" } },
+  { "ray-x/aurora",               "aurora",       { "dark" } },
+
 }
 
 local picker_results = {}

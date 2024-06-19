@@ -12,7 +12,6 @@ vim.keymap.set('n', '<C-Right>', ':vertical resize -2<Cr>', { silent = true })
 
 --[[ vim.keymap.set('n', '<S-l>', ':bprevious<Cr>') ]]
 
-vim.keymap.set('n', '-', ':split<Cr>', { silent = true })
 vim.keymap.set('n', '|', ':vsplit<Cr>', { silent = true })
 
 vim.keymap.set('n', '<leader>t', ':set wrap!<Cr>', { silent = true })
@@ -20,7 +19,8 @@ vim.keymap.set('n', '<leader>t', ':set wrap!<Cr>', { silent = true })
 
 vim.keymap.set('v', '<', '<gv', { silent = true })
 vim.keymap.set('v', '>', '>gv', { silent = true })
-vim.keymap.set('v', '|', ':vsplit<Cr>', { silent = true })
+vim.keymap.set('n', '-', ':split<Cr><C-w>j', { silent = true })
+vim.keymap.set('v', '|', ':vsplit<Cr><C-w>l', { silent = true })
 
 vim.keymap.set('n', '<C-s>', vim.cmd.w)
 vim.keymap.set('i', '<C-s>', function()
@@ -80,3 +80,5 @@ vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { silent = true })
 end
 
 vim.api.nvim_set_keymap('n', 'q', ':lua CloseQuickfix()<CR>', { noremap = true, silent = true }) ]]
+
+vim.keymap.set("n", "<leader>h", function() vim.cmd("set hlsearch!") end, { silent = true })

@@ -54,10 +54,25 @@ return {
       return vim.json.decode(Path:new(local_config):read())
     end
 
+    local hex = function(n)
+      return string.format("\\#%06x", n)
+    end
+
     local function set_theme(theme)
       vim.cmd.colorscheme(theme.scheme)
       vim.opt.background = theme.background
+
       Path:new(theme_config):write(vim.fn.json_encode(theme), 'w')
+
+      -- if theme.background == "dark" then
+      --   local hlcolors = vim.api.nvim_get_hl(0, { name = "Normal" })
+      --   local bg_dec = hlcolors.bg or 0
+      --   local bg = hex(bg_dec)
+      --
+      --   vim.cmd("highlight Normal guibg=none")
+      --   vim.cmd("silent ! /home/felipetrost/.local/kitty.app/bin/kitty @ --to unix:/tmp/mykitty set-colors background='" ..
+      --     bg .. "'")
+      -- end
     end
 
     local ok, selected_theme = pcall(read_config, theme_config)

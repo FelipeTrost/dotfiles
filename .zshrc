@@ -102,6 +102,7 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 alias x="xdg-open"
+alias fx='xdg-open "$(fzf)"'
 alias vim="nvim"
 
 alias c="~/.local/bin/tmux-sessionizer" # c for code 

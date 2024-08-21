@@ -1,4 +1,4 @@
-vim.keymap.set('n', '<leader>gs', ':Git<Cr><C-W>L', { silent = true })
+vim.keymap.set('n', '<leader>gs', ':Git<Cr><C-W>L5j', { silent = true })
 
 return {
   'tpope/vim-fugitive',

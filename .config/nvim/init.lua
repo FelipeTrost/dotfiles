@@ -85,7 +85,11 @@ require("lazy").setup({
   {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
-    opts = {}
+    opts = {
+      highlight = {
+        pattern = [[.*<(KEYWORDS)\s*]], -- pattern or table of patterns, used for highlighting (vim regex)
+      },
+    }
   },
   -- sessions add require("persistence").load() to .nvim_config.lua in projects where you want it to be automatic
   {
@@ -103,15 +107,23 @@ require("lazy").setup({
     }
   },
   require("config.autoformat"),
-  require("config.debugger"),
+  -- {
+  --   dir = "~/projects/personal/tserrors.nvim",
+  --   config = function()
+  --     vim.api.nvim_create_user_command('TSErrors', require('tserrors').get_errors, {})
+  --   end
+  -- },
 })
+
 
 require("config.lsp")
 require("config.cmp")
+require("config.debugger")
 
 require("workstuff")
 require("hello-there")
 require("autocmds")
+require("kitty-bg-setter")
 
 --[[ Local config for project ]]
 local cwd = vim.fn.getcwd()

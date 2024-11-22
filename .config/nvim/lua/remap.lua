@@ -82,3 +82,10 @@ end
 vim.api.nvim_set_keymap('n', 'q', ':lua CloseQuickfix()<CR>', { noremap = true, silent = true }) ]]
 
 vim.keymap.set("n", "<leader>h", function() vim.cmd("set hlsearch!") end, { silent = true })
+
+vim.keymap.set("n", "<leader>j", ":cnext<Cr>zz", { silent = true })
+vim.keymap.set("n", "<leader>k", ":cprevious<Cr>zz", { silent = true })
+vim.cmd("hi! link QuickFixLine MatchParen") -- Highlight current item
+
+-- TERMINAL remaps
+vim.api.nvim_set_keymap('t', '<Esc>', [[<C-\><C-n>]], { noremap = true, silent = true })

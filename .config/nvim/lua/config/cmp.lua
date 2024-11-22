@@ -1,13 +1,27 @@
-local cmp = require 'cmp'
-local luasnip = require 'luasnip'
+local cmp = require('cmp')
+local ls = require('luasnip')
+
+vim.keymap.set("n", "<Leader><Leader>so", "<cmd>source ~/.config/nvim/lua/config/cmp.lua")
+
+
+-- vim.keymap.set({ "i", "s" }, "<c-l>", function()
+--   if ls.choice_active() then ls.change_coice() end
+-- end)
+
+ls.snippes = {
+  all = {
+    ls.parser.parse_snippet("expand", "holaa amami")
+  }
+}
 
 require('luasnip.loaders.from_vscode').lazy_load()
-luasnip.config.setup({})
+ls.config.setup({})
+ls.config.set_config({})
 
-cmp.setup {
+cmp.setup({
   snippet = {
     expand = function(args)
-      luasnip.lsp_expand(args.body)
+      ls.lsp_expand(args.body)
     end,
   },
   completion = {
@@ -28,8 +42,8 @@ cmp.setup {
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      elseif luasnip.expand_or_locally_jumpable() then
-        luasnip.expand_or_jump()
+      elseif ls.expand_or_locally_jumpable() then
+        ls.expand_or_jump()
       else
         fallback()
       end
@@ -37,8 +51,8 @@ cmp.setup {
     ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
-      elseif luasnip.locally_jumpable(-1) then
-        luasnip.jump(-1)
+      elseif ls.locally_jumpable(-1) then
+        ls.jump(-1)
       else
         fallback()
       end
@@ -55,7 +69,7 @@ cmp.setup {
     completion = cmp.config.window.bordered(),
     documentation = cmp.config.window.bordered(),
   }
-}
+})
 
 -- max item count in cmp menu
 vim.opt.pumheight = 20

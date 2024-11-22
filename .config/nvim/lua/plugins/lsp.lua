@@ -5,7 +5,7 @@ return {
       { 'williamboman/mason.nvim', config = true },
       'williamboman/mason-lspconfig.nvim',
 
-      -- Language specifig
+      -- Language specific
       { 'j-hui/fidget.nvim',       opts = {} },
       'folke/neodev.nvim',
 
@@ -21,13 +21,25 @@ return {
       -- refer to the configuration section below
     },
     config = function()
-      require("trouble").setup({})
+      require("trouble").setup({
+        auto_refresh = false,
+        focus = true,
+      })
 
-      vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end)
-      vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end)
-      vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end)
-      vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end)
-      vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end)
+      -- vim.api.nvim_create_autocmd("QuickFixCmdPost", {
+      --   callback = function()
+      --     vim.cmd([[Trouble qflist open]])
+      --   end,
+      -- })
+
+      -- vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end)
+      -- vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end)
+      -- vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end)
+      -- vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end)
+      -- vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end)
+
+      vim.keymap.set("n", "<leader>xd", "Trouble diagnostics")
+      vim.keymap.set("n", "gR", "Trouble lsp_references")
     end
   }
 }

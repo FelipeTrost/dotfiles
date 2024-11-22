@@ -1,0 +1,19 @@
+(defcfg
+  process-unmapped-keys yes
+)
+
+(defsrc
+ a
+ f
+)
+
+(defalias
+  ;; tap-timeout hold-timeout tap-action hold-action
+  a-mod (tap-hold 200 200 a lmet)
+  f-mod (tap-hold 200 200 f lctl)
+)
+
+(deflayer layer1
+  @a-mod
+  @f-mod
+)

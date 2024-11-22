@@ -25,8 +25,9 @@ if [[ "$ID" == "fedora" ]]; then
   sudo dnf update -y 
   echo "✅ dnf updated"
 
-  echo ... installing git alacritty zsh stow make cmake gcc nodejs npm gh ripgrep wl-clipboard neofetch
-  sudo dnf install -y git alacritty zsh stow make cmake gcc nodejs npm gh ripgrep wl-clipboard neofetch
+  echo ... installing git alacritty zsh stow make cmake gcc nodejs npm gh ripgrep wl-clipboard neofetch luarocks hyprland hyprpaper cargo
+  sudo dnf install -y git alacritty zsh stow make cmake gcc nodejs npm gh ripgrep wl-clipboard neofetch luarocks hyprland hyprpaper cargo
+
   echo ✅ packages installed
 else
   echo "Distro not supported :/"
@@ -90,6 +91,20 @@ else
 fi
 
 # =================================
+# Install VSCODE JS debugger
+# =================================
+echo "... Installing vs code debugger"
+cd ~/tools
+cmd git clone https://github.com/microsoft/vscode-js-debug
+git pull
+cd vscode-js-debug
+npm install --legacy-peer-deps
+npx gulp vsDebugServerBundle
+mv dist out
+echo "✅ Installed vs code debugger"
+
+
+# =================================
 # Install Tmux
 # =================================
 echo "... Installing tmux"
@@ -143,6 +158,17 @@ if [ ! -d ~/.local/share/fonts/jetbrains ]; then
 else
   echo "❌ nerdfont already installed"
 fi
+
+# =================================
+# Kanata - for Key remaps
+# =================================
+echo "... Installing Kanata"
+cargo install kanata
+kanata_service_file="/lib/systemd/system/kanata.service"
+[ -f $kanata_service_file ] && sudo rm $kanata_service_file
+sudo cp ~/.config/kanata/kanata.service /lib/systemd/system/kanata.service
+sudo systemctl enable kanata.service
+echo "✅ Installed Kanata"
 
 # =================================
 # Stow

@@ -136,6 +136,9 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:/home/felipetrost/go/bin
 
+# cargo
+export PATH=$PATH:/home/felipetrost/.cargo/bin
+
 # miktex
 export PATH=~/bin:$PATH
 
@@ -153,3 +156,4 @@ setopt appendhistory
 
 # for github cli
 export EDITOR=nvim
+. "/home/felipetrost/.deno/env"

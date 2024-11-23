@@ -160,23 +160,22 @@ else
 fi
 
 # =================================
-# Kanata - for Key remaps
-# =================================
-echo "... Installing Kanata"
-cargo install kanata
-kanata_service_file="/lib/systemd/system/kanata.service"
-[ -f $kanata_service_file ] && sudo rm $kanata_service_file
-sudo cp ~/.config/kanata/kanata.service /lib/systemd/system/kanata.service
-sudo systemctl enable kanata.service
-echo "✅ Installed Kanata"
-
-# =================================
 # Stow
 # =================================
 echo "... Using stow to symlink dotfiles"
 mv ~/.bashrc ~/.bashrc.bak # for stow to link a new one
 stow .
 echo "✅ Used stow to symlink dotfiles"
+
+
+# =================================
+# Kanata - for Key remaps
+# =================================
+echo "... Installing Kanata"
+cargo install kanata
+sudo systemctl daemon-reload
+sudo systemctl enable kanata.service
+echo "✅ Installed Kanata"
 
 
 # =================================

@@ -25,8 +25,8 @@ if [[ "$ID" == "fedora" ]]; then
   sudo dnf update -y 
   echo "✅ dnf updated"
 
-  echo ... installing git alacritty zsh stow make cmake gcc nodejs npm gh ripgrep wl-clipboard neofetch luarocks hyprland hyprpaper cargo
-  sudo dnf install -y git alacritty zsh stow make cmake gcc nodejs npm gh ripgrep wl-clipboard neofetch luarocks hyprland hyprpaper cargo
+  echo ... installing git alacritty zsh stow make cmake gcc nodejs npm gh ripgrep wl-clipboard neofetch luarocks hyprland hyprpaper cargo hyprlock
+  sudo dnf install -y git alacritty zsh stow make cmake gcc nodejs npm gh ripgrep wl-clipboard neofetch luarocks hyprland hyprpaper cargo hyprlock
 
   echo ✅ packages installed
 else

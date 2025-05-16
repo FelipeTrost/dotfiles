@@ -1,3 +1,18 @@
+-- Set highlight for the quickfix list
+
+local function set_quickfix_highlight()
+  if vim.opt.background:get() == "dark" then
+    vim.cmd("highlight QuickFixLine guibg=#888888")
+  else
+    vim.cmd("highlight QuickFixLine guibg=#555555")
+  end
+end
+
+vim.api.nvim_create_autocmd("OptionSet", {
+  pattern = "background",
+  callback = set_quickfix_highlight,
+})
+
 local color_themes = {
   { "tiagovla/tokyodark.nvim",    "tokyodark",    { "dark" } },
   { "rebelot/kanagawa.nvim",      "kanagawa",     { "dark", "light" } },
@@ -13,6 +28,7 @@ local color_themes = {
   { "Mofiqul/vscode.nvim",        "vscode",       { "dark" } },
   { "Scysta/pink-panic.nvim",     "pink-panic",   { "light" } },
   { "ray-x/aurora",               "aurora",       { "dark" } },
+
 }
 
 local picker_results = {}
@@ -67,6 +83,13 @@ return {
 
       Path:new(theme_config):write(vim.fn.json_encode(theme), 'w')
 
+      -- TODO: find a better way to do this
+      if theme.background == "dark" and theme.scheme == "kanagawa" then
+        local hlcolors = vim.api.nvim_get_hl(0, { name = "Normal" })
+        local bg_dec = hlcolors.bg or 0
+        vim.cmd("highlight Normal guibg=" .. hex(bg_dec))
+      end
+
       if theme.background == "dark" and os.getenv("TERM") == "xterm-kitty" then
         local hlcolors = vim.api.nvim_get_hl(0, { name = "Normal" })
         local bg_dec = hlcolors.bg or 0
@@ -75,6 +98,8 @@ return {
         vim.cmd("silent ! kitty @ --to unix:/tmp/kitty set-colors background='" .. bg .. "'")
         vim.cmd("highlight Normal guibg=none")
       end
+
+      set_quickfix_highlight()
     end
 
     local ok, selected_theme = pcall(read_config, theme_config)

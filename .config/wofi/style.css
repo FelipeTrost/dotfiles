@@ -5,27 +5,36 @@
 
 window {
   border-radius: 15px;
-  background: rgb(15, 13, 13);
-  background: -moz-linear-gradient(27deg,
-      rgba(15, 13, 13, 1) 51%,
-      rgba(189, 147, 249, 1) 100%);
-  background: -webkit-linear-gradient(27deg,
-      rgba(15, 13, 13, 1) 51%,
-      rgba(189, 147, 249, 1) 100%);
-  background: linear-gradient(27deg,
-      rgba(15, 13, 13, 1) 51%,
-      rgba(189, 147, 249, 1) 100%);
-  border: 3px solid #bd93f9;
+  /* background: rgb(15, 13, 13); */
+  /* background: -moz-linear-gradient(27deg, */
+  /*     rgba(15, 13, 13, 1) 51%, */
+  /*     rgba(189, 147, 249, 1) 100%); */
+  /* background: -webkit-linear-gradient(27deg, */
+  /*     rgba(15, 13, 13, 1) 51%, */
+  /*     rgba(189, 147, 249, 1) 100%); */
+  /* background: linear-gradient(27deg, */
+  /*     rgba(15, 13, 13, 1) 51%, */
+  /*     rgba(189, 147, 249, 1) 100%); */
+  /* border: 3px solid #bd93f9; */
+  background-color: rgba(20, 20, 20, 0.9);
+  /* White with 20% opacity */
+  /* Or use a different color:  rgba(0, 0, 0, 0.3);  for black with 30% opacity */
+
+  /* The magic: backdrop-filter for the blur */
+  backdrop-filter: blur(10px);
+  /* Adjust the blur radius as needed */
+  -webkit-backdrop-filter: blur(10px);
+  /* For Safari support */
 }
 
 #input {
-  margin-bottom: 10px;
-  padding: 0.6rem;
+  margin-bottom: 15px;
+  padding: 0.5rem;
   border-radius: 10px;
   border: none;
   background-color: #383c4a;
   color: white;
-  font-size: 2em;
+  font-size: 1.8em;
 }
 
 #input:focus,
@@ -67,9 +76,10 @@ window {
 }
 
 #entry {
-  background-color: #383c4a;
+  /* background-color: #383c4a; */
+  background-color: transparent;
   border: 2px solid transparent;
-  /* border-radius: 10px; */
+  border-radius: 10px;
   padding: 0.5rem;
 }
 

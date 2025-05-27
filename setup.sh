@@ -108,9 +108,8 @@ echo "✅ Installed vs code debugger"
 # Install Tmux
 # =================================
 echo "... Installing tmux"
-cd ~/tools
-cmd git clone https://github.com/tmux/tmux.git
-cd tmux
+cmd git clone https://github.com/tmux/tmux.git ~/tools/tmux
+cd ~/tools/tmux
 cmd git fetch --all
 tag=$(git tag | fzf --header="-> TMUX version (Ctl-C to skip)")
 if [ -n "$tag" ]; then

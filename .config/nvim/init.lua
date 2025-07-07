@@ -1,10 +1,8 @@
--- print("Hola guapo ")
-
 require("set")
 require("globals")
 require("remap")
 
---[[ Plugins ]]
+-- LAZY bootstrap
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -19,40 +17,32 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  require("plugins.lsp"),
-  require("plugins.nonels"),
-  require("plugins.nvim-cmp"),
-  require("plugins.git"),
-  require("plugins.treesitter"),
-  require("plugins.telescope"),
-  require("plugins.lualine"),
-  require("plugins.copilot"),
-  require("plugins.harpoon"),
-  require("plugins.debugger"),
-  require("plugins.nvim-tree"),
-  require("plugins.theme"),
-  require("plugins.theme"),
-  -- {
-  --   -- Add indentation guides even on blank lines
-  --   'lukas-reineke/indent-blankline.nvim',
-  --   main = 'ibl',
-  --   opts = {},
-  -- },
-  --{ "davidosomething/format-ts-errors.nvim" },
+  require("config.nonels"),
+  require("config.git"),
+  require("config.treesitter"),
+  require("config.telescope"),
+  require("config.lualine"),
+  require("config.copilot"),
+  require("config.harpoon"),
+  require("config.debugger.debugger"),
+  require("config.nvim-tree"),
+  require("config.theme"),
+  require("config.theme"),
   {
     "kylechui/nvim-surround",
     config = function()
       require("nvim-surround").setup()
       vim.api.nvim_set_hl(0, "NvimSurroundHighlight", {
         bg = "#ffffff",
-        -- blend = 100,
       })
     end
 
   },
   { "christoomey/vim-tmux-navigator" },
-  { "m4xshen/autoclose.nvim",        opts = {} },
-  { "numToStr/Comment.nvim",         opts = { toggler = { line = "<C-_>" }, opleader = { line = "<C-_>" } } },
+  {
+    "numToStr/Comment.nvim",
+    opts = { toggler = { line = "<C-_>" }, opleader = { line = "<C-_>" } }
+  },
   {
     "mbbill/undotree",
     config = function()
@@ -63,7 +53,6 @@ require("lazy").setup({
     "folke/noice.nvim",
     event = "VeryLazy",
     opts = {
-      -- you can enable a preset for easier configuration
       presets = {
         bottom_search = true,         -- use a classic bottom cmdline for search
         long_message_to_split = true, -- long messages will be sent to a split
@@ -78,7 +67,6 @@ require("lazy").setup({
       }
     },
     dependencies = {
-      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
       "MunifTanjim/nui.nvim",
     }
   },
@@ -91,39 +79,20 @@ require("lazy").setup({
       },
     }
   },
-  -- sessions add require("persistence").load() to .nvim_config.lua in projects where you want it to be automatic
   {
+    -- for sessions add require("persistence").load() to .nvim_config.lua in projects where you want it to be automatic
     "folke/persistence.nvim",
     event = "BufReadPre", -- this will only start session saving when an actual file was opened
     opts = {}
   },
-  {
-    'kevinhwang91/nvim-ufo',
-    dependencies = 'kevinhwang91/promise-async',
-    opts = {
-      -- provider_selector = function(bufnr, filetype, buftype)
-      --   return { 'treesitter', 'indent' }
-      -- end
-    }
-  },
-  require("config.autoformat"),
-  -- {
-  --   dir = "~/projects/personal/tserrors.nvim",
-  --   config = function()
-  --     vim.api.nvim_create_user_command('TSErrors', require('tserrors').get_errors, {})
-  --   end
-  -- },
+  require("config.lsp.lsp"),
 })
 
 
-require("config.lsp")
-require("config.cmp")
-require("config.debugger")
-
-require("workstuff")
 require("hello-there")
 require("autocmds")
-require("kitty-bg-setter")
+
+vim.notify = function() end
 
 --[[ Local config for project ]]
 local cwd = vim.fn.getcwd()

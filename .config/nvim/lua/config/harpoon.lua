@@ -1,3 +1,4 @@
+-- Harpoon 2 didn't quite do it for me, it didn't work right away, so why bother?
 return {
   "ThePrimeagen/harpoon",
   config = function()

@@ -127,10 +127,6 @@ return
       local foldstart = vim.v.foldstart
       local line = vim.api.nvim_buf_get_lines(0, foldstart - 1, foldstart, false)[1]
 
-      local line_count = vim.v.foldend - vim.v.foldstart + 1
-      local help_size = math.floor(line_count / 10)
-      local icon = ""
-
       local firstChar = 1
       while firstChar <= #line do
         if not string.find(line, " ", firstChar) then
@@ -139,7 +135,11 @@ return
         firstChar = firstChar + 1
       end
 
+      local line_count = vim.v.foldend - vim.v.foldstart + 1
+      local help_size = math.floor(line_count / 10)
       local suffix = ": " .. line_count .. " lines " .. string.rep("▋", help_size)
+
+      local icon = ""
 
       if firstChar < string.len(icon) then
         return line .. suffix

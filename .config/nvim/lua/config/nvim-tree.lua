@@ -11,6 +11,9 @@ return {
       },
       renderer = {
         group_empty = true,
+        indent_markers = {
+          enable = true,
+        },
       },
       filters = {
         dotfiles = false,
@@ -39,7 +42,7 @@ return {
         then
           -- We need to defer if for the case when the tree is taking up the hole window
           -- because closing it alsow causes the buffer we're entering to be closed for some reason
-          -- By defering it the buffer opens, the tree moves to the side, and then we close it
+          -- By deferring it the buffer opens, the tree moves to the side, and then we close it
           vim.defer_fn(function()
             require("nvim-tree.api").tree.close()
           end, 0)

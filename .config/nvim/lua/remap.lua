@@ -1,33 +1,29 @@
 vim.keymap.set('', '<Space>', '<Nop>', { silent = true })
+
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
---[[ vim.keymap.set('n', '<leader>pv', vim.cmd.Ex) ]], { silent = true }
 
---[[ vim.keymap.set('n', '<leader>e', ':Lex 20<Cr><Cr>') ]], { silent = true }
 
+-- ---------------------
+-- Window management
+-- ---------------------
 vim.keymap.set('n', '<C-Up>', ':resize -2<Cr>', { silent = true })
 vim.keymap.set('n', '<C-Down>', ':resize +2<Cr>', { silent = true })
 vim.keymap.set('n', '<C-Left>', ':vertical resize +2<Cr>', { silent = true })
 vim.keymap.set('n', '<C-Right>', ':vertical resize -2<Cr>', { silent = true })
 
---[[ vim.keymap.set('n', '<S-l>', ':bprevious<Cr>') ]]
 
 vim.keymap.set('n', '|', ':vsplit<Cr>', { silent = true })
 
 vim.keymap.set('n', '<leader>t', ':set wrap!<Cr>', { silent = true })
 
-
+-- ---------------------
+-- ---------------------
+-- ---------------------
 vim.keymap.set('v', '<', '<gv', { silent = true })
 vim.keymap.set('v', '>', '>gv', { silent = true })
 vim.keymap.set('n', '-', ':split<Cr><C-w>j', { silent = true })
 vim.keymap.set('v', '|', ':vsplit<Cr><C-w>l', { silent = true })
-
-vim.keymap.set('n', '<C-s>', vim.cmd.w)
-vim.keymap.set('i', '<C-s>', function()
-  vim.cmd.w();
-  vim.cmd.stopinsert();
-end)
-
 
 vim.keymap.set('i', 'jk', '<Esc>l', { silent = true, noremap = true }, { silent = true })
 --vim.keymap.set('n', '<C-_>', 'gcc', { silent=true})
@@ -83,9 +79,20 @@ vim.api.nvim_set_keymap('n', 'q', ':lua CloseQuickfix()<CR>', { noremap = true, 
 
 vim.keymap.set("n", "<leader>h", function() vim.cmd("set hlsearch!") end, { silent = true })
 
-vim.keymap.set("n", "<leader>j", ":cnext<Cr>zz", { silent = true })
-vim.keymap.set("n", "<leader>k", ":cprevious<Cr>zz", { silent = true })
-vim.cmd("hi! link QuickFixLine MatchParen") -- Highlight current item
+vim.keymap.set("n", "<leader>j", function()
+  vim.cmd("cnext")
+  vim.schedule(function()
+    vim.cmd("normal! zz")
+  end)
+end, { silent = true })
+
+vim.keymap.set("n", "<leader>k", function()
+  vim.cmd("cprevious")
+  vim.schedule(function()
+    vim.cmd("normal! zz")
+  end)
+end, { silent = true })
+-- vim.cmd("hi! link QuickFixLine MatchParen") -- Highlight current item
 
 -- TERMINAL remaps
 vim.api.nvim_set_keymap('t', '<Esc>', [[<C-\><C-n>]], { noremap = true, silent = true })
